@@ -544,6 +544,8 @@ h2 { font-size: clamp(2.4rem, 5.5vw, 3.8rem); color: var(--lime); }
 .notepad .ends .defbtn:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
 .notepad .ends .defbtn svg { opacity: .8; }
 .notepad .ends #leanTxt { text-align: center; line-height: 1.2; padding: 0 6px; }
+
+.notepad textarea#noteText { min-height: 104px !important; }
 </style>
 
 <header class="topbar" id="topbar"><div class="inner">
@@ -972,8 +974,8 @@ function renderNotes() {
         ${GAPS.map(g => `<button type="button" class="chip ${pk.gaps.has(g) ? "picked" : ""}" data-g="${g}" data-def="${g}" aria-pressed="${pk.gaps.has(g)}">${g}</button>`).join("")}
       </div>
     </div>
-    <div class="q"><b>3 · Which clues led you there?</b>
-      <textarea id="noteText" placeholder="Point to the evidence behind your motivation and gap calls.">${esc(pk.notes || "")}</textarea>
+    <div class="q"><b>3 · Why did you choose those?</b>
+      <textarea id="noteText" placeholder="Which clues led to your motivation and gap choices? Example: “Turns in work late” → Habit">${esc(pk.notes || "")}</textarea>
     </div>
     <button type="button" class="btn evbtn" id="makeCard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Make evidence card</button>`;
   const rng = document.getElementById("motive");
@@ -1108,7 +1110,7 @@ async function drawEvidence(s, pk, r) {
     c.fillStyle = "#2e1500"; c.fillText(gp, gx + 20, gy + 29); gx += tw + 16;
   });
   // 3 notes
-  label("3 · WHICH CLUES LED ME THERE", 412);
+  label("3 · WHY I CHOSE THOSE", 412);
   rr(c, X, 428, RW, 200, 14); c.fillStyle = "#fff"; c.fill(); c.lineWidth = 2; c.strokeStyle = "#c9b3ec"; c.stroke();
   c.font = `400 19px ${BODY}`; c.fillStyle = "#1f0c40";
   let lines = wrapLines(c, (pk.notes || "").trim() || "—", RW - 40);
