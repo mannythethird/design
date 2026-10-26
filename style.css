@@ -1,0 +1,168 @@
+:root {
+  --bg: #0f1115;
+  --ink: #f4f3f1;
+  --muted: #9a9ba3;
+  --accent: #f4f3f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.page {
+  width: 100%;
+  max-width: 980px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+h1 {
+  font-size: clamp(1.25rem, 3vw, 1.9rem);
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+
+h1 span {
+  color: var(--muted);
+  font-weight: 400;
+  font-style: italic;
+  margin: 0 6px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 20px;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2754 / 1536;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.image-container {
+  position: absolute;
+  inset: 0;
+}
+
+.image-container.clip {
+  width: 50%;
+  overflow: hidden;
+}
+
+.image-back,
+.image-front {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  max-width: none;
+}
+
+.image-back {
+  width: 100%;
+}
+
+/* width set in px by script.js so the image doesn't resize as the clip narrows */
+.image-front {
+  width: 100%;
+}
+
+.label {
+  position: absolute;
+  top: 16px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(15, 17, 21, 0.65);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.label-left {
+  left: 16px;
+}
+
+.label-right {
+  right: 16px;
+}
+
+.handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.handle-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.handle-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 560px) {
+  .label {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    top: 10px;
+  }
+  .handle-button {
+    width: 36px;
+    height: 36px;
+  }
+}
